@@ -15,11 +15,22 @@ if ! command -v docker >/dev/null 2>&1; then
     exit 1
 fi
 
+# --- Check Docker permissions ---
+SUDO=""
+if ! docker info >/dev/null 2>&1; then
+    if sudo docker info >/dev/null 2>&1; then
+        SUDO="sudo"
+    else
+        printf "  \033[1;31mError:\033[0m Cannot connect to Docker. Is the daemon running?\n\n"
+        exit 1
+    fi
+fi
+
 COMPOSE_CMD=""
-if docker compose version >/dev/null 2>&1; then
-    COMPOSE_CMD="docker compose"
+if $SUDO docker compose version >/dev/null 2>&1; then
+    COMPOSE_CMD="$SUDO docker compose"
 elif command -v docker-compose >/dev/null 2>&1; then
-    COMPOSE_CMD="docker-compose"
+    COMPOSE_CMD="$SUDO docker-compose"
 else
     printf "  \033[1;31mError:\033[0m Docker Compose is not installed.\n"
     printf "  Install it: https://docs.docker.com/compose/install/\n\n"
