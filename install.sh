@@ -39,18 +39,18 @@ printf "  Install directory: \033[1m%s\033[0m\n\n" "$INSTALL_DIR"
 printf "  \033[1;35mConfiguration\033[0m\n\n"
 
 printf "  Port [8080]: "
-read -r PORT
+read -r PORT </dev/tty
 PORT="${PORT:-8080}"
 
 printf "  JWT Secret (leave empty to auto-generate): "
-read -r JWT_SECRET
+read -r JWT_SECRET </dev/tty
 if [ -z "$JWT_SECRET" ]; then
     JWT_SECRET=$(openssl rand -hex 32 2>/dev/null || head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n')
     printf "  \033[2mGenerated: %s\033[0m\n" "$JWT_SECRET"
 fi
 
 printf "\n  Configure SMTP for email verification? [y/N]: "
-read -r SMTP_ANSWER
+read -r SMTP_ANSWER </dev/tty
 SMTP_ANSWER=$(echo "$SMTP_ANSWER" | tr '[:upper:]' '[:lower:]')
 
 SMTP_HOST=""
@@ -61,16 +61,16 @@ API_URL=""
 
 if [ "$SMTP_ANSWER" = "y" ] || [ "$SMTP_ANSWER" = "yes" ]; then
     printf "  SMTP Host: "
-    read -r SMTP_HOST
+    read -r SMTP_HOST </dev/tty
     printf "  SMTP Port [587]: "
-    read -r SMTP_PORT_INPUT
+    read -r SMTP_PORT_INPUT </dev/tty
     SMTP_PORT="${SMTP_PORT_INPUT:-587}"
     printf "  SMTP User: "
-    read -r SMTP_USER
+    read -r SMTP_USER </dev/tty
     printf "  SMTP Password: "
-    read -r SMTP_PASS
+    read -r SMTP_PASS </dev/tty
     printf "  Public API URL (for email links, e.g. https://sync.example.com): "
-    read -r API_URL
+    read -r API_URL </dev/tty
 fi
 
 # --- Generate files ---
