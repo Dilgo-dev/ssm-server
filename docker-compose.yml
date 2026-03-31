@@ -1,5 +1,5 @@
 services:
-  ssm-server:
+  ssm-sync:
     build: .
     ports:
       - "8080:8080"

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Dilgo-dev/ssm-server/internal/auth"
-	"github.com/Dilgo-dev/ssm-server/internal/db"
+	"github.com/Dilgo-dev/ssm-sync/internal/auth"
+	"github.com/Dilgo-dev/ssm-sync/internal/db"
 )
 
 type contextKey string

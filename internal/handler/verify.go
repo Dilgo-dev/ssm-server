@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Dilgo-dev/ssm-server/internal/db"
-	"github.com/Dilgo-dev/ssm-server/internal/email"
+	"github.com/Dilgo-dev/ssm-sync/internal/db"
+	"github.com/Dilgo-dev/ssm-sync/internal/email"
 )
 
 type VerifyHandler struct {

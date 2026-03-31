@@ -1,4 +1,4 @@
-module github.com/Dilgo-dev/ssm-server
+module github.com/Dilgo-dev/ssm-sync
 
 go 1.25.7
 

@@ -1,4 +1,4 @@
-# ssm-server
+# ssm-sync
 
 Self-hosted sync server for [ssm](https://github.com/Dilgo-dev/ssm) (SSH connection manager).
 
@@ -14,10 +14,10 @@ Then in ssm, set the server to `http://your-server:8080` during `ssm register` o
 
 ## Quick start (binary)
 
-Download from [Releases](https://github.com/Dilgo-dev/ssm-server/releases), then:
+Download from [Releases](https://github.com/Dilgo-dev/ssm-sync/releases), then:
 
 ```bash
-JWT_SECRET=your-secret-here ./ssm-server
+JWT_SECRET=your-secret-here ./ssm-sync
 ```
 
 ## Configuration
@@ -65,7 +65,7 @@ Change the **Server** field to your self-hosted URL (e.g. `http://192.168.1.50:8
 ## Build from source
 
 ```bash
-go build ./cmd/ssm-server
+go build ./cmd/ssm-sync
 ```
 
 ## License

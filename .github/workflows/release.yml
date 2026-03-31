@@ -36,12 +36,12 @@ jobs:
         run: |
           CGO_ENABLED=0 GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} \
           go build -ldflags="-s -w -X main.version=${{ github.ref_name }}" \
-          -o ssm-server-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.ext }} ./cmd/ssm-server
+          -o ssm-sync-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.ext }} ./cmd/ssm-sync
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ssm-server-${{ matrix.goos }}-${{ matrix.goarch }}
-          path: ssm-server-*
+          name: ssm-sync-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: ssm-sync-*
 
   release:
     needs: build
@@ -52,12 +52,12 @@ jobs:
           merge-multiple: true
 
       - name: Checksums
-        run: sha256sum ssm-server-* > checksums.txt
+        run: sha256sum ssm-sync-* > checksums.txt
 
       - uses: softprops/action-gh-release@v2
         with:
           files: |
-            ssm-server-*
+            ssm-sync-*
             checksums.txt
 
   docker:

@@ -5,7 +5,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/Dilgo-dev/ssm-server/internal/db"
+	"github.com/Dilgo-dev/ssm-sync/internal/db"
 )
 
 func SyncGet(w http.ResponseWriter, r *http.Request) {
