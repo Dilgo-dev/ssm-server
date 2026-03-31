@@ -4,15 +4,23 @@ Self-hosted sync server for [ssm](https://github.com/Dilgo-dev/ssm) (SSH connect
 
 Zero-knowledge: the server stores encrypted blobs only, it never sees your plaintext data.
 
-## Quick start (Docker)
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Dilgo-dev/ssm-sync/main/install.sh | sh
+```
+
+The script will check for Docker, ask a few questions, and start the server.
+
+Then in ssm, set the server to `http://your-server:8080` during `ssm register` or `ssm login`.
+
+## Manual setup (Docker)
 
 ```bash
 docker compose up -d
 ```
 
-Then in ssm, set the server to `http://your-server:8080` during `ssm register` or `ssm login`.
-
-## Quick start (binary)
+## Manual setup (binary)
 
 Download from [Releases](https://github.com/Dilgo-dev/ssm-sync/releases), then:
 
