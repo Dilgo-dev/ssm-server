@@ -18,10 +18,16 @@ fi
 # --- Check Docker permissions ---
 SUDO=""
 if ! docker info >/dev/null 2>&1; then
-    if sudo docker info >/dev/null 2>&1; then
+    printf "  Docker requires elevated permissions, trying sudo...\n"
+    if sudo -n true 2>/dev/null || sudo -S true </dev/tty 2>/dev/null; then
         SUDO="sudo"
+        if ! $SUDO docker info >/dev/null 2>&1; then
+            printf "  \033[1;31mError:\033[0m Cannot connect to Docker. Is the daemon running?\n\n"
+            exit 1
+        fi
     else
-        printf "  \033[1;31mError:\033[0m Cannot connect to Docker. Is the daemon running?\n\n"
+        printf "  \033[1;31mError:\033[0m Cannot connect to Docker and sudo failed.\n"
+        printf "  Add your user to the docker group: sudo usermod -aG docker \$USER\n\n"
         exit 1
     fi
 fi
